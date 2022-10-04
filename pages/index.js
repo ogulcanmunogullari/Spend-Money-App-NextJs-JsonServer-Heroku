@@ -39,7 +39,7 @@ export default function Home({ products, cart }) {
     dispatch(PRODUCT_LOAD({ products, money: cart.money }))
   }, [cart, dispatch, products])
   return (
-    <div className=" bg-gradient-to-r from-violet-500 to-fuchsia-500 h-screen">
+    <div className=" bg-gradient-to-r from-violet-500 to-fuchsia-500 min-h-screen">
       <div className="container mx-auto">
         <div className="absolute bg-white h-56 top-0 left-0 right-0">
           <Header />
