@@ -31,21 +31,23 @@ function ProductCard({ isMain, product, total }) {
             {product.productPrice} $
           </div>
           <div className="flex w-full justify-between p-2 sm:text-lg">
-            <button
-              className={`${
-                product.count > 0 ? "bg-green-400" : "bg-teal-500"
-              }  rounded-lg p-1 sm:p-2`}
-              onClick={() =>
-                buttonHandler({
-                  id: product.id,
-                  count: Number(product.count) + 1,
-                  price: total
-                    ? Number(total) - Number(product.productPrice)
-                    : -Number(product.productPrice),
-                })
-              }>
-              {product.count <= 0 ? "Add Cart" : "Add More"}
-            </button>
+            {product.productPrice <= total && (
+              <button
+                className={`${
+                  product.count > 0 ? "bg-green-400" : "bg-teal-500"
+                }  rounded-lg p-1 sm:p-2`}
+                onClick={() =>
+                  buttonHandler({
+                    id: product.id,
+                    count: Number(product.count) + 1,
+                    price: total
+                      ? Number(total) - Number(product.productPrice)
+                      : -Number(product.productPrice),
+                  })
+                }>
+                {product.count <= 0 ? "Add Cart" : "Add More"}
+              </button>
+            )}
             {product.count <= 0 || (
               <button
                 className={`${
