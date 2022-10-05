@@ -11,10 +11,10 @@ function ProductCard({ isMain, product, total }) {
     const API = async () => {
       await axios.patch(
         `https://spend-money-app.herokuapp.com/products/${id}`,
-        { count: count },
+        { count: `${count}` },
       )
-      await axios.patch("https://spend-money-app.herokuapp.com/cart/1", {
-        money: price,
+      await axios.patch("https://spend-money-app.herokuapp.com/cart", {
+        money: `${price}`,
       })
     }
     API()
@@ -31,7 +31,7 @@ function ProductCard({ isMain, product, total }) {
             {product.productPrice} $
           </div>
           <div className="flex w-full justify-between p-2 sm:text-lg">
-            {product.productPrice <= total && (
+            {Number(product.productPrice) <= total && (
               <button
                 className={`${
                   product.count > 0 ? "bg-green-400" : "bg-teal-500"

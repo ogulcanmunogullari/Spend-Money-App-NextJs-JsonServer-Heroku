@@ -22,7 +22,7 @@ export const getServerSideProps = async () => {
   const responseCart = await axios.get(
     "https://spend-money-app.herokuapp.com/cart",
   )
-  const dataCart = await responseCart.data[0]
+  const dataCart = await responseCart.data
   return {
     props: {
       products: data,
@@ -36,7 +36,12 @@ export default function Home({ products, cart }) {
   const PRODUCTS = useSelector(PRODUCTS_FROM_API)
   const MONEY = useSelector(MONEY_FROM_API)
   useEffect(() => {
-    dispatch(PRODUCT_LOAD({ products, money: cart.money }))
+    dispatch(
+      PRODUCT_LOAD({
+        products,
+        money: cart.money ? Number(cart.money) : 100000000000,
+      }),
+    )
   }, [cart, dispatch, products])
   return (
     <div className=" bg-gradient-to-r from-violet-500 to-fuchsia-500 min-h-screen">
